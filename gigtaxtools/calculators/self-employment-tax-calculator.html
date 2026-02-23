@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Self-Employment Tax Calculator | GigTaxTools</title>
+<link rel="icon" type="image/png" href="/assets/logo.png">
+<meta name="description" content="Calculate your Self-Employment (SE) tax, including Social Security and Medicare contributions for freelancers and independent contractors.">
+<meta name="keywords" content="self-employment tax calculator, freelancer tax, independent contractor tax, SE tax, gig worker tax">
+<link rel="canonical" href="https://gigtaxtools.com/calculator/self-employment-tax-calculator.html">
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:#f4f6f9;
+color:#1a1a1a;
+}
+
+a{text-decoration:none;color:inherit;}
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 8%;
+background:#ffffff;
+box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.nav-left a{
+margin-right:25px;
+font-weight:500;
+color:#333;
+}
+
+.nav-right{
+display:flex;
+align-items:center;
+font-weight:bold;
+font-size:18px;
+}
+
+.nav-right img{
+height:35px;
+margin-right:10px;
+}
+
+.hero{
+padding:90px 8%;
+text-align:center;
+background-image:url(/assets/hero-image.jpg)
+}
+
+.hero h1{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.hero p{
+max-width:650px;
+margin:auto;
+opacity:0.9;
+}
+
+.tool-section{
+padding:70px 8%;
+background:#ffffff;
+}
+
+.tool-container{
+max-width:650px;
+margin:auto;
+}
+
+.form-group{
+margin-bottom:20px;
+}
+
+label{
+font-weight:600;
+display:block;
+margin-bottom:6px;
+}
+
+select,input{
+width:100%;
+padding:12px;
+border-radius:6px;
+border:1px solid #ccc;
+font-size:15px;
+}
+
+.input-wrapper{
+position:relative;
+}
+
+.input-wrapper span{
+position:absolute;
+left:12px;
+top:50%;
+transform:translateY(-50%);
+color:#666;
+}
+
+.input-wrapper input{
+padding-left:10px;
+}
+
+.small-note{
+font-size:12px;
+color:#666;
+margin-bottom:20px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#1e2a38;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#2c3e50;
+}
+
+.receipt{
+margin-top:40px;
+background:white;
+padding:30px;
+border-radius:8px;
+box-shadow:0 6px 20px rgba(0,0,0,0.08);
+display:none;
+}
+
+.receipt-line{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px;
+}
+
+.receipt-total{
+border-top:1px solid #ddd;
+margin-top:15px;
+padding-top:15px;
+font-weight:bold;
+}
+
+.print-btn{
+margin-top:20px;
+background:#444;
+}
+
+.faq-section{
+padding:70px 8%;
+background:#f4f6f9;
+}
+
+.faq-section h2{
+text-align:center;
+margin-bottom:40px;
+}
+
+.faq-item{
+margin-bottom:15px;
+}
+
+.faq-question{
+width:100%;
+text-align:left;
+padding:15px;
+font-size:16px;
+font-weight:600;
+border:none;
+background:#545c61;
+border-radius:6px;
+cursor:pointer;
+}
+
+.faq-answer{
+display:none;
+padding:15px;
+background:#ddd3d3;
+border-radius:6px;
+margin-top:5px;
+color:#000;
+}
+
+.related-tools{
+padding:70px 8%;
+background:#ffffff;
+text-align:center;
+}
+
+.tools-grid{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.tool-card{
+flex:1;
+min-width:250px;
+max-width:300px;
+padding:20px;
+background:#eef1f5;
+border-radius:8px;
+}
+
+.tool-icon{
+width:50px;
+height:50px;
+object-fit:contain;
+margin-bottom:15px;
+}
+
+footer{
+padding:30px 8%;
+background:#1e2a38;
+color:white;
+text-align:center;
+}
+
+@media print{
+body *{visibility:hidden;}
+.receipt,.receipt *{visibility:visible;}
+.receipt{
+position:absolute;
+left:0;
+top:0;
+width:100%;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+<div class="nav-left">
+<a href="homepage.html">Calculators</a>
+<a href="../blog/home.html">Blog</a>
+<a href="../about.html">About</a>
+</div>
+<div class="nav-right">
+<img src="/assets/logo.png" alt="GigTaxTools Logo">
+</div>
+</div>
+
+<section class="hero">
+<h1>Self-Employment Tax Calculator</h1>
+<p>Quickly calculate your Social Security and Medicare taxes as a freelancer or independent contractor.</p>
+</section>
+
+<section class="tool-section">
+<div class="tool-container">
+
+<div class="form-group">
+<label>Select State</label>
+<select id="state"></select>
+</div>
+
+<div class="form-group">
+<label>Total Net Income (Annual)</label>
+<div class="input-wrapper">
+<input type="number" id="income">
+</div>
+</div>
+
+<div class="form-group">
+<label>Business Expenses</label>
+<div class="input-wrapper">
+<input type="number" id="expenses">
+</div>
+</div>
+
+<p class="small-note">
+Calculations are based on 2026 self-employment tax rates (15.3%) and simplified state income taxes. Estimates are for informational purposes only.
+</p>
+
+<button onclick="calculateTax()">Calculate</button>
+
+<div class="receipt" id="receipt">
+<h3>Self-Employment Tax Summary</h3>
+<div class="receipt-line"><span>Net Profit:</span><span id="netProfit"></span></div>
+<div class="receipt-line"><span>Self-Employment Tax (15.3%):</span><span id="seTax"></span></div>
+<div class="receipt-line"><span>Deductible SE Tax (50%):</span><span id="seDeduction"></span></div>
+<div class="receipt-line"><span>Federal Taxable Income:</span><span id="taxableIncome"></span></div>
+<div class="receipt-line"><span>State Income Tax:</span><span id="stateTax"></span></div>
+<div class="receipt-line receipt-total"><span>Total Estimated Tax:</span><span id="totalTax"></span></div>
+<button class="print-btn" onclick="window.print()">Print Receipt</button>
+</div>
+
+</div>
+</section>
+
+<section class="faq-section">
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+<button class="faq-question">What is self-employment tax?</button>
+<div class="faq-answer"><p>Self-employment tax includes Social Security and Medicare contributions for freelancers and independent contractors. The current rate is 15.3%.</p></div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">Can I deduct my business expenses?</button>
+<div class="faq-answer"><p>Yes. Legitimate business expenses reduce your net income and overall self-employment tax.</p></div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">Do I pay state tax as a freelancer?</button>
+<div class="faq-answer"><p>State income tax depends on your resident state. Some states like Texas and Florida have no personal income tax.</p></div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">Do I need to file quarterly taxes?</button>
+<div class="faq-answer"><p>If you expect to owe $1,000 or more, quarterly estimated payments are required.</p></div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">Is this calculator accurate?</button>
+<div class="faq-answer"><p>This calculator provides estimates based on 2026 SE tax rates and simplified state rates, but it does not replace professional tax advice.</p></div>
+</div>
+
+</section>
+
+<section class="related-tools">
+<h2>Tools You May Also Like</h2>
+<div class="tools-grid">
+<a href="1099-tax-calculator.html" class="tool-card">
+<img src="../assets/1099.png" class="tool-icon">
+<h3>1099 Tax Calculator</h3>
+<p>Calculate full annual tax liability including federal and state taxes.</p>
+</a>
+
+<a href="quarterly-tax-calculator.html" class="tool-card">
+<img src="../assets/quarterly.png" class="tool-icon">
+<h3>Quarterly Tax Calculator</h3>
+<p>Plan your quarterly estimated payments and avoid penalties.</p>
+</a>
+
+<a href="rideshare-tax-calculator.html" class="tool-card">
+<img src="/assets/uber.png" alt="Rideshare Icon" class="tool-icon">
+<h3>Rideshare Tax Estimator</h3>
+<p>Specialized calculator for Uber, Lyft & other rideshare drivers to estimate income, expenses, and deductions.</p>
+</a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2026 GigTaxTools | Not affiliated with the IRS</p>
+    <ul class="footer-links">
+      <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+      <li><a href="../disclaimer.html">Disclaimer</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../terms.html">Terms</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+const stateRates={
+"Alabama":5,"Alaska":0,"Arizona":2.5,"Arkansas":4.7,"California":9.3,
+"Colorado":4.4,"Connecticut":6.99,"Delaware":6.6,"Florida":0,
+"Georgia":5.75,"Hawaii":8.25,"Idaho":5.8,"Illinois":4.95,"Indiana":3.15,
+"Iowa":5.7,"Kansas":5.7,"Kentucky":4.5,"Louisiana":4.25,"Maine":7.15,
+"Maryland":5.75,"Massachusetts":5,"Michigan":4.25,"Minnesota":7.85,
+"Mississippi":5,"Missouri":4.95,"Montana":6.75,"Nebraska":6.84,
+"Nevada":0,"New Hampshire":0,"New Jersey":6.37,"New Mexico":5.9,
+"New York":6.85,"North Carolina":4.75,"North Dakota":2.9,
+"Ohio":3.99,"Oklahoma":4.75,"Oregon":8.75,"Pennsylvania":3.07,
+"Rhode Island":5.99,"South Carolina":6.4,"South Dakota":0,
+"Tennessee":0,"Texas":0,"Utah":4.85,"Vermont":7.6,"Virginia":5.75,
+"Washington":0,"West Virginia":4.82,"Wisconsin":5.3,"Wyoming":0
+};
+
+const stateSelect=document.getElementById("state");
+for(const state in stateRates){
+let option=document.createElement("option");
+option.text=state;
+stateSelect.add(option);
+}
+
+function calculateTax(){
+let income=parseFloat(document.getElementById("income").value)||0;
+let expenses=parseFloat(document.getElementById("expenses").value)||0;
+let net=income-expenses;
+if(net<0) net=0;
+
+let seTax=net*0.153;
+let seDeduction=seTax/2;
+let adjustedIncome=net-seDeduction;
+let state=document.getElementById("state").value;
+let stateTax=adjustedIncome*(stateRates[state]/100);
+let total=seTax+stateTax;
+
+document.getElementById("netProfit").innerText="$"+net.toFixed(2);
+document.getElementById("seTax").innerText="$"+seTax.toFixed(2);
+document.getElementById("seDeduction").innerText="-$"+seDeduction.toFixed(2);
+document.getElementById("taxableIncome").innerText="$"+adjustedIncome.toFixed(2);
+document.getElementById("stateTax").innerText="$"+stateTax.toFixed(2);
+document.getElementById("totalTax").innerText="$"+total.toFixed(2);
+
+document.getElementById("receipt").style.display="block";
+}
+
+document.querySelectorAll(".faq-question").forEach(button=>{
+button.addEventListener("click",()=>{
+const answer=button.nextElementSibling;
+answer.style.display=answer.style.display==="block"?"none":"block";
+});
+});
+</script>
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+{"@type":"Question","name":"What is self-employment tax?","acceptedAnswer":{"@type":"Answer","text":"Self-employment tax includes Social Security and Medicare contributions for freelancers and independent contractors. The current rate is 15.3%."}},
+{"@type":"Question","name":"Can I deduct my business expenses?","acceptedAnswer":{"@type":"Answer","text":"Yes. Legitimate business expenses reduce your net income and overall self-employment tax."}},
+{"@type":"Question","name":"Do I pay state tax as a freelancer?","acceptedAnswer":{"@type":"Answer","text":"State income tax depends on your resident state. Some states like Texas and Florida have no personal income tax."}},
+{"@type":"Question","name":"Do I need to file quarterly taxes?","acceptedAnswer":{"@type":"Answer","text":"If you expect to owe $1,000 or more, quarterly estimated payments are required."}},
+{"@type":"Question","name":"Is this calculator accurate?","acceptedAnswer":{"@type":"Answer","text":"This calculator provides estimates based on 2026 SE tax rates and simplified state rates, but it does not replace professional tax advice."}}
+]
+}
+</script>
+
+</body>
+</html>

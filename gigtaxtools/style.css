@@ -1,0 +1,296 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.navbar .nav-links li a {
+  text-decoration: none;
+  color: #1A237E;
+  font-weight: 500;
+}
+
+.navbar .nav-links li a:hover {
+  text-decoration: underline;
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar .logo img {
+  height: 40px;
+}
+
+.navbar .logo span {
+  font-weight: bold;
+  color: #1A237E;
+  font-size: 1.1rem;
+}
+
+/* HERO */
+#hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 100px 20px;
+  background-image: url('assets/hero-image.jpg'); /* placeholder; you can add image background */
+  background-size: cover;
+  background-position: center;
+  color: #1A237E;
+}
+
+#hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+
+#hero p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+.cta-button {
+  background-color: #3949AB;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cta-button:hover {
+  background-color: #5C6BC0;
+}
+
+.trust-line {
+  margin-top: 15px;
+  color: #616161;
+  font-size: 0.9rem;
+}
+
+/* TOOLS */
+#tools {
+  padding: 60px 50px;
+  text-align: center;
+}
+
+#tools h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #1A237E;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  align-items: stretch; /* ensures all cards in a row are same height */
+}
+
+.tool-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-decoration: none;
+  color: #1A237E;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tool-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+/* Icon Styling */
+.tool-icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  align-self: center; /* center horizontally */
+}
+
+/* Titles and paragraph */
+.tool-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.tool-card p {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tools-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* EDUCATIONAL + INTERNAL LINKS */
+#education {
+  padding: 60px 50px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+#education h2 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #1A237E;
+}
+
+#education h3 {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #3949AB;
+}
+
+#education p, #education ul {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#education ul {
+  list-style: disc inside;
+}
+
+#education ul li a {
+  color: #3949AB;
+  text-decoration: none;
+}
+
+#education ul li a:hover {
+  text-decoration: underline;
+}
+
+/* FOOTER */
+footer {
+  background-color: #555557;
+  color: #fff;
+  padding: 30px 50px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.footer-links li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-links li a:hover {
+  text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column-reverse;
+    gap: 15px;
+  }
+
+  #hero h1 {
+    font-size: 2rem;
+  }
+
+  .tools-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+}
+
+
+/**Calculator Styles**/
+.calc-container {
+  max-width: 500px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.calc-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.calc-container button {
+  background-color: #3949AB;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.calc-container button:hover {
+  background-color: #303F9F;
+}
+
+.calc-result {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f1f1f1;
+  border-radius: 5px;
+}

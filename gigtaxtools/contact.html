@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | GigTaxTools</title>
+<meta name="description" content="Get in touch with GigTaxTools for inquiries, support, or feedback regarding freelance tax calculators and guides.">
+<link rel="icon" href="/assets/logo.png">
+<style>
+body {font-family:'Segoe UI',sans-serif; margin:0; padding:0; background:#f4f6f9; color:#1a1a1a;}
+.container {max-width:700px; margin:50px auto; padding:0 20px;}
+h1 {color:#1e2a38;}
+form {display:flex; flex-direction:column; gap:15px;}
+input, textarea {padding:12px; border-radius:6px; border:1px solid #ccc; font-size:15px; width:100%;}
+button {padding:14px; background:#1e2a38; color:white; border:none; border-radius:6px; font-size:16px; cursor:pointer;}
+button:hover {background:#2c3e50;}
+/* FOOTER */
+footer {
+  background-color: #555557;
+  color: #fff;
+  padding: 30px 50px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.footer-links li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-links li a:hover {
+  text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column-reverse;
+    gap: 15px;
+  }
+
+  #hero h1 {
+    font-size: 2rem;
+  }
+
+  .tools-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Contact Us</h1>
+<p>If you have any questions, suggestions, or support requests regarding our calculators or content, please email us at: <a href="mailto:gigtaxtools@gmail.com">gigtaxtools@gmail.com</a></p>
+
+<form action="mailto:gigtaxtools@gmail.com" method="post" enctype="text/plain">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+<button type="submit">Send Message</button>
+</form>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2026 GigTaxTools | Not affiliated with the IRS</p>
+    <ul class="footer-links">
+      <li><a href="privacy-policy.html">Privacy Policy</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="terms.html">Terms</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
