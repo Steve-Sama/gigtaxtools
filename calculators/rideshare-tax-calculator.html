@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rideshare Tax Estimator | GigTaxTools</title>
+<link rel="icon" type="image/png" href="/assets/logo.png">
+<meta name="description" content="Estimate your Uber, Lyft, or DoorDash tax liability including self-employment, federal, and state taxes.">
+<meta name="keywords" content="rideshare tax calculator, Uber tax estimator, Lyft tax calculator, DoorDash taxes, gig worker tax calculator">
+<link rel="canonical" href="https://gigtaxtools.com/calculator/rideshare-tax-calculator.html">
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:#f4f6f9;
+color:#1a1a1a;
+}
+
+a{text-decoration:none;color:inherit;}
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 8%;
+background:#ffffff;
+box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.nav-left a{
+margin-right:25px;
+font-weight:500;
+color:#333;
+}
+
+.nav-right{
+display:flex;
+align-items:center;
+font-weight:bold;
+font-size:18px;
+}
+
+.nav-right img{
+height:35px;
+margin-right:10px;
+}
+
+.hero{
+padding:90px 8%;
+text-align:center;
+background-image:url(/assets/hero-image.jpg)
+}
+
+.hero h1{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.hero p{
+max-width:650px;
+margin:auto;
+opacity:0.9;
+}
+
+.tool-section{
+padding:70px 8%;
+background:#ffffff;
+}
+
+.tool-container{
+max-width:650px;
+margin:auto;
+}
+
+.form-group{
+margin-bottom:20px;
+}
+
+label{
+font-weight:600;
+display:block;
+margin-bottom:6px;
+}
+
+select,input{
+width:100%;
+padding:12px;
+border-radius:6px;
+border:1px solid #ccc;
+font-size:15px;
+}
+
+.input-wrapper{
+position:relative;
+}
+
+.input-wrapper span{
+position:absolute;
+left:12px;
+top:50%;
+transform:translateY(-50%);
+color:#666;
+}
+
+.input-wrapper input{
+padding-left:10px;
+}
+
+.small-note{
+font-size:12px;
+color:#666;
+margin-bottom:20px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#1e2a38;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#2c3e50;
+}
+
+.receipt{
+margin-top:40px;
+background:white;
+padding:30px;
+border-radius:8px;
+box-shadow:0 6px 20px rgba(0,0,0,0.08);
+display:none;
+}
+
+.receipt-line{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px;
+}
+
+.receipt-total{
+border-top:1px solid #ddd;
+margin-top:15px;
+padding-top:15px;
+font-weight:bold;
+}
+
+.print-btn{
+margin-top:20px;
+background:#444;
+}
+
+.faq-section{
+padding:70px 8%;
+background:#f4f6f9;
+}
+
+.faq-section h2{
+text-align:center;
+margin-bottom:40px;
+}
+
+.faq-item{
+margin-bottom:15px;
+}
+
+.faq-question{
+width:100%;
+text-align:left;
+padding:15px;
+font-size:16px;
+font-weight:600;
+border:none;
+background:#545c61;
+border-radius:6px;
+cursor:pointer;
+}
+
+.faq-answer{
+display:none;
+padding:15px;
+background:#ddd3d3;
+border-radius:6px;
+margin-top:5px;
+color:#000;
+}
+
+.related-tools{
+padding:70px 8%;
+background:#ffffff;
+text-align:center;
+}
+
+.tools-grid{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.tool-card{
+flex:1;
+min-width:250px;
+max-width:300px;
+padding:20px;
+background:#eef1f5;
+border-radius:8px;
+}
+
+.tool-icon{
+width:50px;
+height:50px;
+object-fit:contain;
+margin-bottom:15px;
+}
+
+footer{
+padding:30px 8%;
+background:#1e2a38;
+color:white;
+text-align:center;
+}
+
+@media print{
+body *{visibility:hidden;}
+.receipt,.receipt *{visibility:visible;}
+.receipt{
+position:absolute;
+left:0;
+top:0;
+width:100%;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+<div class="nav-left">
+<a href="homepage.html">Calculators</a>
+<a href="../blog/home.html">Blog</a>
+<a href="../about.html">About</a>
+</div>
+<div class="nav-right">
+<img src="/assets/logo.png" alt="GigTaxTools Logo">
+</div>
+</div>
+
+<section class="hero">
+<h1>Rideshare Tax Estimator</h1>
+<p>Calculate your Uber, Lyft, or DoorDash taxes including income, expenses, and deductions for accurate federal and state estimates.</p>
+</section>
+
+<section class="tool-section">
+<div class="tool-container">
+
+<div class="form-group">
+<label>Select State</label>
+<select id="state"></select>
+</div>
+
+<div class="form-group">
+<label>Total Rideshare Income (Annual)</label>
+<div class="input-wrapper">
+<input type="number" id="income">
+</div>
+</div>
+
+<div class="form-group">
+<label>Business Expenses</label>
+<div class="input-wrapper">
+<input type="number" id="expenses">
+</div>
+</div>
+
+<p class="small-note">
+Estimates are based on 2026 federal brackets (Single filer) and simplified state tax rates. Results are for estimation purposes only.
+</p>
+
+<button onclick="calculateTax()">Calculate</button>
+
+<div class="receipt" id="receipt">
+<h3>Rideshare Tax Summary</h3>
+<div class="receipt-line"><span>Net Profit:</span><span id="netProfit"></span></div>
+<div class="receipt-line"><span>Self-Employment Tax (15.3%):</span><span id="seTax"></span></div>
+<div class="receipt-line"><span>Deductible SE Tax (50%):</span><span id="seDeduction"></span></div>
+<div class="receipt-line"><span>Federal Income Tax:</span><span id="federalTax"></span></div>
+<div class="receipt-line"><span>State Income Tax:</span><span id="stateTax"></span></div>
+<div class="receipt-line receipt-total"><span>Total Estimated Tax:</span><span id="totalTax"></span></div>
+<button class="print-btn" onclick="window.print()">Print Receipt</button>
+</div>
+
+</div>
+</section>
+
+<section class="faq-section">
+<h2>Rideshare Tax FAQs</h2>
+
+<div class="faq-item">
+<button class="faq-question">Do I have to pay self-employment tax?</button>
+<div class="faq-answer"><p>Yes, rideshare income is considered self-employment income, and you must pay Social Security and Medicare taxes.</p></div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">Can I deduct mileage?</button>
+<div class="faq-answer"><p>Mileage related to business driving can be deducted at the IRS standard mileage rate.</p></div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">What expenses can I deduct?</button>
+<div class="faq-answer"><p>Expenses such as phone, car maintenance, tolls, rideshare commissions, and gas can reduce taxable income.</p></div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">Do I pay taxes in my state?</button>
+<div class="faq-answer"><p>Yes. State income tax applies based on your resident state. Some states do not charge income tax.</p></div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">How accurate is this estimator?</button>
+<div class="faq-answer"><p>This tool provides estimates using federal brackets and simplified state rates. It does not replace professional tax advice.</p></div>
+</div>
+
+</section>
+
+<section class="related-tools">
+<h2>Other Tools You May Like</h2>
+<div class="tools-grid">
+<a href="quarterly-tax-calculator.html" class="tool-card">
+      <img src="/assets/quarterly.png" alt="Quarterly Tax Icon" class="tool-icon">
+      <h3>Quarterly Tax Calculator</h3>
+      <p>Plan and calculate quarterly tax payments to stay compliant and avoid IRS penalties.</p>
+    </a>
+
+<a href="income-tax-calculator.html" class="tool-card">
+      <img src="/assets/income.png" alt="Income Tax Icon" class="tool-icon">
+      <h3>Income Tax Calculator</h3>
+      <p>Estimate income tax for W-2 and salaried workers.</p>
+    </a>
+
+<a href="freelance-deduction-calculator.html" class="tool-card">
+      <img src="/assets/freelance.png" alt="Freelance Deduction Icon" class="tool-icon">
+      <h3>Freelance Deduction Calculator</h3>
+      <p>Track business expenses and deductions to reduce taxable income for freelancers and independent contractors.</p>
+    </a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2026 GigTaxTools | Not affiliated with the IRS</p>
+    <ul class="footer-links">
+      <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+      <li><a href="../disclaimer.html">Disclaimer</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../terms.html">Terms</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+const stateRates={
+"Alabama":5,"Alaska":0,"Arizona":2.5,"Arkansas":4.7,"California":9.3,
+"Colorado":4.4,"Connecticut":6.99,"Delaware":6.6,"Florida":0,
+"Georgia":5.75,"Hawaii":8.25,"Idaho":5.8,"Illinois":4.95,"Indiana":3.15,
+"Iowa":5.7,"Kansas":5.7,"Kentucky":4.5,"Louisiana":4.25,"Maine":7.15,
+"Maryland":5.75,"Massachusetts":5,"Michigan":4.25,"Minnesota":7.85,
+"Mississippi":5,"Missouri":4.95,"Montana":6.75,"Nebraska":6.84,
+"Nevada":0,"New Hampshire":0,"New Jersey":6.37,"New Mexico":5.9,
+"New York":6.85,"North Carolina":4.75,"North Dakota":2.9,
+"Ohio":3.99,"Oklahoma":4.75,"Oregon":8.75,"Pennsylvania":3.07,
+"Rhode Island":5.99,"South Carolina":6.4,"South Dakota":0,
+"Tennessee":0,"Texas":0,"Utah":4.85,"Vermont":7.6,"Virginia":5.75,
+"Washington":0,"West Virginia":4.82,"Wisconsin":5.3,"Wyoming":0
+};
+
+const stateSelect=document.getElementById("state");
+for(const state in stateRates){
+let option=document.createElement("option");
+option.text=state;
+stateSelect.add(option);
+}
+
+function calculateFederalTax(income){
+let tax=0;
+if(income<=11600) tax=income*0.10;
+else if(income<=47150) tax=1160+(income-11600)*0.12;
+else if(income<=100525) tax=5426+(income-47150)*0.22;
+else if(income<=191950) tax=17168.5+(income-100525)*0.24;
+else if(income<=243725) tax=39110.5+(income-191950)*0.32;
+else if(income<=609350) tax=55678.5+(income-243725)*0.35;
+else tax=183647.25+(income-609350)*0.37;
+return tax;
+}
+
+function calculateTax(){
+let income=parseFloat(document.getElementById("income").value)||0;
+let expenses=parseFloat(document.getElementById("expenses").value)||0;
+
+let net=income-expenses;
+if(net<0) net=0;
+
+let seTax=net*0.153;
+let seDeduction=seTax/2;
+let adjustedIncome=net-seDeduction;
+let federalTax=calculateFederalTax(adjustedIncome);
+let state=document.getElementById("state").value;
+let stateTax=adjustedIncome*(stateRates[state]/100);
+let total=seTax+federalTax+stateTax;
+
+document.getElementById("netProfit").innerText="$"+net.toFixed(2);
+document.getElementById("seTax").innerText="$"+seTax.toFixed(2);
+document.getElementById("seDeduction").innerText="-$"+seDeduction.toFixed(2);
+document.getElementById("federalTax").innerText="$"+federalTax.toFixed(2);
+document.getElementById("stateTax").innerText="$"+stateTax.toFixed(2);
+document.getElementById("totalTax").innerText="$"+total.toFixed(2);
+
+document.getElementById("receipt").style.display="block";
+}
+
+document.querySelectorAll(".faq-question").forEach(button=>{
+button.addEventListener("click",()=>{
+const answer=button.nextElementSibling;
+answer.style.display=answer.style.display==="block"?"none":"block";
+});
+});
+</script>
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+{"@type":"Question","name":"Do I have to pay self-employment tax?","acceptedAnswer":{"@type":"Answer","text":"Yes, rideshare income is considered self-employment income, and you must pay Social Security and Medicare taxes."}},
+{"@type":"Question","name":"Can I deduct mileage?","acceptedAnswer":{"@type":"Answer","text":"Mileage related to business driving can be deducted at the IRS standard mileage rate."}},
+{"@type":"Question","name":"What expenses can I deduct?","acceptedAnswer":{"@type":"Answer","text":"Expenses such as phone, car maintenance, tolls, rideshare commissions, and gas can reduce taxable income."}},
+{"@type":"Question","name":"Do I pay taxes in my state?","acceptedAnswer":{"@type":"Answer","text":"State income tax applies based on your resident state. Some states do not charge income tax."}},
+{"@type":"Question","name":"How accurate is this estimator?","acceptedAnswer":{"@type":"Answer","text":"This tool provides estimates using federal brackets and simplified state rates. It does not replace professional tax advice."}}
+]
+}
+</script>
+
+</body>
+</html>
